@@ -191,7 +191,7 @@ def bot(pagina, usuario, senha):
 def main():
 
     # obtem as configuracoes
-    conf = ler_configuracoes('sambura.conf')
+    conf = ler_configuracoes('var/sambura.conf')
     csv_file = conf['csv']
     pagina = conf['pagina']
     usuario = conf['usuario']
