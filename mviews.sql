@@ -139,7 +139,8 @@ SELECT r.rid::int4 as objectid,
        r.raep,
        r.data_hora,
        r.veloc as velocidade,
+       r.direcao,
        sde.st_point(r.longitude, r.latitude, 4326) as shape
        FROM rastreamento r, portos_atracadouros a
        WHERE r.data_hora > now() - '1 day'::interval AND a.nivel = 3 AND
-       sde.st_geo_overlap(sde.st_point(r.longitude, r.latitude, 4326), a.shape);
+       sde.st_within(sde.st_point(r.longitude, r.latitude, 4326), a.shape);
