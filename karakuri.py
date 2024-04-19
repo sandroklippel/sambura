@@ -27,8 +27,9 @@
 File: karakuri.py
 Author: Sandro Klippel
 Date: 2024-01-15
-Description: Automata que extrai, processa e injeta as informações do rastreamento das 
-embarcações pesqueiras em um banco de dados geográfico. 
+Description: Automata que extrai, transforma e por fim carrega 
+as informações do rastreamento das embarcações pesqueiras 
+em um banco de dados geográfico. 
 SAMBURA: Monitor de atividade pesqueira. 
 """
 
@@ -182,7 +183,7 @@ def bot(pagina, usuario, senha):
         driver.close()
         
         driver.switch_to.window(main_page) # volta para a primeira pagina
-        
+        time.sleep(5)
         # sair da pagina e fecha navegador
         driver.find_element(By.CSS_SELECTOR, "#ctl00_panelMenu_mainMenu_DXI6_T > .dx-vam").click() # sair
     finally:

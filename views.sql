@@ -13,7 +13,10 @@ SELECT r.rid::int4 as objectid,
        r.veloc as velocidade,
        r.direcao,
        r.prof as profundidade, 
-       sambura.func_area_nome(sde.st_point(r.longitude, r.latitude, 4326)) as zee
+       coalesce(sambura.func_local_nome(sde.st_point(r.longitude, r.latitude, 4326)), 
+                sambura.func_cidade_nome(sde.st_point(r.longitude, r.latitude, 4326)), 
+                sambura.func_area_nome(sde.st_point(r.longitude, r.latitude, 4326))) AS localizacao,
+       sde.st_point(r.longitude, r.latitude, 4326) as shape
        FROM rastreamento r
        WHERE r.tipo is NULL;
 
